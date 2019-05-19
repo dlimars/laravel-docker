@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+    api:
+        build:
+            context: .
+#        links:
+#            - postgres
+#            - redis
+        expose:
+            - 80
+            - 443
+        ports:
+            - "8000:80"
+            - "40443:443"
+        volumes:
+            - .:/app
+        environment:
+            REDIS_PORT: 6677
+            APP_USER_LOCAL: "true"
+            MAIL_USERNAME: ""
+            MAIL_PASSWORD: ""
+
+#    postgres:
+#        image: postgres:11.1-alpine
+#        volumes:
+#            - ./data/postgres:/var/lib/postgresql/data
+#        ports:
+#            - "5430:5432"
+#        environment:
+#            POSTGRES_USER: default
+#            POSTGRES_PASSWORD: secret
+#            POSTGRES_DB: plataforma
+#
+#    redis:
+#        image: redis:alpine
+#        volumes:
+#            - ./data/redis:/data
+#        expose:
+#            - 6677
+#        ports:
+#            - "6677:6379"
